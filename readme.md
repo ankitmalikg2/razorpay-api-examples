@@ -1,4 +1,4 @@
-# Payment Link Generator
+# Razorpay Payment Link Generator - Examples
 
 This repository contains the examples that generates payment links using the Razorpay API. With this tool, you can easily create secure payment links that can be shared with customers for online transactions. The Razorpay API integration ensures a smooth and reliable payment process, allowing you to accept payments seamlessly.
 
