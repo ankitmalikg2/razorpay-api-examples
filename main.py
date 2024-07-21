@@ -82,14 +82,62 @@ def cancel_payment_id(payment_link_id):
         return response.json()
     else:
         return "Failed to cancel payment link"
+    
+    # curl --location 'https://api.razorpay.com/v1/orders' \
+
+def create_order_id(amount:int):
+    url = constants.api_url_order_create
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ' + constants.token_key
+    }
+
+    data = {
+        "amount": amount * 100,
+        "currency": "INR",
+        "receipt": "Receipt for amount "+str(amount),
+        "notes": {
+            "notes_key_1": "payment",
+        }
+    }
+
+    response = requests.post(url, headers=headers, json=data)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return "Failed to create order_id"
+    
+def fetch_oder_id(order_id):
+    url = constants.api_url_order_create + "/" + order_id
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ' + constants.token_key
+    }
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return "Failed to fetch order_id"
+    
+def fetch_payment_by_oder_id(order_id):
+    url = constants.api_url_order_create + "/" + order_id + "/payments"
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ' + constants.token_key
+    }
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return "Failed to fetch order_id"
 
 # Call the method to create the payment link
-result = create_payment_link(100)
-print( json.dumps(result))
-payment_id = result["id"]
-print("payment_id - ", payment_id)
-print("payment_url - ", result["short_url"])
-print()
+# result = create_payment_link(100)
+# print( json.dumps(result))
+# payment_id = result["id"]
+# print("payment_id - ", payment_id)
+# print("payment_url - ", result["short_url"])
+# print()
 
 # # Call the method to cancel the payment link
 # cancel_payment_result = cancel_payment_id(payment_id)
@@ -106,3 +154,16 @@ print()
 # json_data = json.dumps(result)
 # print(json_data)
 
+
+create_order_id_result = create_order_id(100)
+print(json.dumps(create_order_id_result))
+order_id = create_order_id_result["id"]
+
+
+# order_id = "order_ObLZu2WIlrGLhv"
+
+fetch_oder_id_result = fetch_oder_id(order_id)
+print(json.dumps(fetch_oder_id_result))
+
+fetch_payment_by_oder_id_result = fetch_payment_by_oder_id(order_id)
+print(json.dumps(fetch_payment_by_oder_id_result))

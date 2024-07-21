@@ -33,3 +33,12 @@ Provide examples on how to use your project.
 
 ## Contact
 Email: cse.14bcs1065@gmail.com
+
+## How to integrate the custom web integration for web payment gateway 
+1. create `order_id` from order creation api.
+2. Follow this page adding custom web integration [here](https://razorpay.com/docs/payments/payment-gateway/web-integration/standard/integration-steps/#122-code-to-add-pay-button)
+
+
+##  Razorpay hosted gateway 
+1. create `order_id` from order creation api.
+2. Follow this page adding hosted payment gateway  [here](https://razorpay.com/docs/payments/payment-gateway/web-integration/hosted/build-integration/)
